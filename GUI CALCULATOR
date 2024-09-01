@@ -1,0 +1,88 @@
+from tkinter import *
+
+def get_entry_value(event):
+    global data    
+    val = entry1.get()
+    data = val
+    equalButton()
+
+
+def on_click(item):
+    global data
+    var.set(var.get()+(str(item)))
+
+def clear():
+    global data
+    data= ""
+    var.set(var.get()[0:-1])
+    var.set("")
+
+def clearAll():
+    var.set("")
+
+def equalButton():
+    result = ""
+    try:
+        result = eval(var.get())
+        var.set(result)
+    except:
+        result = "ERROR..."
+        var.set(result)
+
+r = Tk()
+r.title("Calculator")
+r.resizable(False, False)
+r.geometry("500x500")
+
+Lab = Label(r, text="Calculator", font=("Arial", 30, "bold"), relief="raised", justify="center", fg="goldenrod", bg="cornsilk2")
+Lab.pack()
+
+var = StringVar()
+
+entry1 = Entry(r, bd=4, relief="sunken", font=("Arial", 30, "bold"), textvariable=var)
+entry1.place(x=10, y=110, height=60, width=460)
+
+button = Button(r,text="9",font=(50),command=lambda:on_click(9),fg="white",bg="black")
+button.place(x=20,y=190,height=70,width=115)
+button = Button(r,text="8",font=(50),command=lambda:on_click(8),fg="white",bg="black")
+button.place(x=135,y=190,height=70,width=115)
+button = Button(r,text="7",font=(50),command=lambda:on_click(7),fg="white",bg="black")
+button.place(x=250,y=190,height=70,width=115)
+button_clear = Button(r,text="C",font=(50),command=clear,fg="white",bg="orange")
+button_clear.place(x=365,y=190,height=70,width=115)
+
+button = Button(r,text="6",font=(50),command=lambda:on_click(6),fg="white",bg="black")
+button.place(x=20,y=260,height=70,width=115)
+button = Button(r,text="5",font=(50),command=lambda:on_click(5),fg="white",bg="black")
+button.place(x=135,y=260,height=70,width=115)
+button = Button(r,text="4",font=(50),command=lambda:on_click(4),fg="white",bg="black")
+button.place(x=250,y=260,height=70,width=115)
+button = Button(r,text="+",font=(50),command=lambda:on_click("+"),fg="white",bg="black")
+button.place(x=365,y=260,height=70,width=115)
+
+button = Button(r,text="3",font=(50),command=lambda:on_click(3),fg="white",bg="black")
+button.place(x=20,y=330,height=70,width=115)
+button = Button(r,text="2",font=(50),command=lambda:on_click(2),fg="white",bg="black")
+button.place(x=135,y=330,height=70,width=115)
+button = Button(r,text="1",font=(50),command=lambda:on_click(1),fg="white",bg="black")
+button.place(x=250,y=330,height=70,width=115)
+button = Button(r,text="-",font=(50),command=lambda:on_click("-"),fg="white",bg="black")
+button.place(x=365,y=330,height=70,width=115)
+
+button = Button(r,text="0",font=(50),command = lambda:on_click(0),fg="white",bg="black")
+button.place(x=20,y=400,height=70,width=115)
+button = Button(r,text="*",font=(50),command=lambda:on_click("*"),fg="white",bg="black")
+button.place(x=135,y=400,height=70,width=115)
+button = Button(r,text="/",font=(50),command=lambda:on_click("/"),fg="white",bg="black")
+button.place(x=250,y=400,height=70,width=115)
+button_equal = Button(r,text="=",font=(50),command=equalButton,fg="white",bg="orchid1")
+button_equal.place(x=365,y=400,height=70,width=115)
+
+
+entry1.bind("<Return>", get_entry_value)
+
+
+r.mainloop()
+
+
+
